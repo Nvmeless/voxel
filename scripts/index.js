@@ -163,7 +163,8 @@ function onPointerMove( event ) {
     if ( intersects.length > 0 ) {
         
         const intersect = intersects[ 0 ];
-        console.log(intersect.point)
+        console.log(intersect)
+        console.log(intersect.point.y)
         rollOverMesh.position.copy( intersect.point ).add( intersect.face.normal );
         // console.log(rollOverMesh.position.divideScalar( 1 ))
         // console.log(rollOverMesh.position.divideScalar( 1 ).floor())
@@ -171,9 +172,12 @@ function onPointerMove( event ) {
         // console.log(rollOverMesh.position.divideScalar( 1 ).floor().multiplyScalar( 2 ).addScalar( .5 ))
         
         rollOverMesh.position.floor()
-        rollOverMesh.position.y = Math.floor(intersect.point.position.y) + .5;
-        rollOverMesh.position.x = Math.floor(intersect.point.position.x) + .5;
-        rollOverMesh.position.z = Math.floor(intersect.point.position.z) + .5;
+        rollOverMesh.position.y = Math.floor(intersect.point.y) + .5;
+        if(rollOverMesh.position.y < 0){
+            rollOverMesh.position.y = 0;
+        }
+        rollOverMesh.position.x = Math.floor(intersect.point.x) + .5;
+        rollOverMesh.position.z = Math.floor(intersect.point.z) + .5;
 
     }
 
